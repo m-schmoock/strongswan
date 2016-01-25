@@ -878,7 +878,7 @@ METHOD(bus_t, authorize, bool,
 
 	ike_sa = this->thread_sa->get(this->thread_sa);
 
-	this->mutex->lock(this->mutex);
+	//this->mutex->lock(this->mutex);
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
@@ -900,7 +900,7 @@ METHOD(bus_t, authorize, bool,
 		}
 	}
 	enumerator->destroy(enumerator);
-	this->mutex->unlock(this->mutex);
+	//this->mutex->unlock(this->mutex);
 	if (!success)
 	{
 		alert(this, ALERT_AUTHORIZATION_FAILED);
