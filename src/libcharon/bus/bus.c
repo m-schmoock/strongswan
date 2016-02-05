@@ -882,7 +882,7 @@ METHOD(bus_t, authorize, bool,
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->authorize)
+		if (/*entry->calling ||*/ !entry->listener->authorize)
 		{
 			continue;
 		}
