@@ -635,11 +635,11 @@ METHOD(bus_t, child_updown, void,
 
 	ike_sa = this->thread_sa->get(this->thread_sa);
 
-	this->mutex->lock(this->mutex);
+	//this->mutex->lock(this->mutex);
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->child_updown)
+		if (/*entry->calling ||*/ !entry->listener->child_updown)
 		{
 			continue;
 		}
@@ -653,7 +653,7 @@ METHOD(bus_t, child_updown, void,
 		}
 	}
 	enumerator->destroy(enumerator);
-	this->mutex->unlock(this->mutex);
+	//this->mutex->unlock(this->mutex);
 }
 
 METHOD(bus_t, child_rekey, void,
@@ -882,7 +882,7 @@ METHOD(bus_t, authorize, bool,
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->authorize)
+		if (/*entry->calling ||*/ !entry->listener->authorize)
 		{
 			continue;
 		}
