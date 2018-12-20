@@ -551,11 +551,11 @@ METHOD(bus_t, message, void,
 
 	ike_sa = this->thread_sa->get(this->thread_sa);
 
-	this->mutex->lock(this->mutex);
+	//this->mutex->lock(this->mutex);
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->message)
+		if (/*entry->calling ||*/ !entry->listener->message)
 		{
 			continue;
 		}
@@ -569,7 +569,7 @@ METHOD(bus_t, message, void,
 		}
 	}
 	enumerator->destroy(enumerator);
-	this->mutex->unlock(this->mutex);
+	//this->mutex->unlock(this->mutex);
 }
 
 METHOD(bus_t, ike_keys, void,
@@ -709,11 +709,11 @@ METHOD(bus_t, child_updown, void,
 
 	ike_sa = this->thread_sa->get(this->thread_sa);
 
-	this->mutex->lock(this->mutex);
+	//this->mutex->lock(this->mutex);
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->child_updown)
+		if (/*entry->calling ||*/ !entry->listener->child_updown)
 		{
 			continue;
 		}
@@ -727,7 +727,7 @@ METHOD(bus_t, child_updown, void,
 		}
 	}
 	enumerator->destroy(enumerator);
-	this->mutex->unlock(this->mutex);
+	//this->mutex->unlock(this->mutex);
 }
 
 METHOD(bus_t, child_rekey, void,
@@ -799,11 +799,11 @@ METHOD(bus_t, ike_updown, void,
 	entry_t *entry;
 	bool keep;
 
-	this->mutex->lock(this->mutex);
+	//this->mutex->lock(this->mutex);
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->ike_updown)
+		if (/*entry->calling ||*/ !entry->listener->ike_updown)
 		{
 			continue;
 		}
@@ -816,7 +816,7 @@ METHOD(bus_t, ike_updown, void,
 		}
 	}
 	enumerator->destroy(enumerator);
-	this->mutex->unlock(this->mutex);
+	//this->mutex->unlock(this->mutex);
 
 	/* a down event for IKE_SA implicitly downs all CHILD_SAs */
 	if (!up)
@@ -956,11 +956,11 @@ METHOD(bus_t, authorize, bool,
 
 	ike_sa = this->thread_sa->get(this->thread_sa);
 
-	this->mutex->lock(this->mutex);
+	//this->mutex->lock(this->mutex);
 	enumerator = this->listeners->create_enumerator(this->listeners);
 	while (enumerator->enumerate(enumerator, &entry))
 	{
-		if (entry->calling || !entry->listener->authorize)
+		if (/*entry->calling ||*/ !entry->listener->authorize)
 		{
 			continue;
 		}
@@ -978,7 +978,7 @@ METHOD(bus_t, authorize, bool,
 		}
 	}
 	enumerator->destroy(enumerator);
-	this->mutex->unlock(this->mutex);
+	//this->mutex->unlock(this->mutex);
 	if (!success)
 	{
 		alert(this, ALERT_AUTHORIZATION_FAILED);
